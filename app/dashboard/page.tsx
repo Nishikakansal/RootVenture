@@ -111,13 +111,13 @@ export default function Dashboard() {
         {/* User Info + Logout */}
         <div className="border-t p-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Avatar className="h-8 w-8">
-              <AvatarFallback>
-                {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
-              </AvatarFallback>
-            </Avatar>
-            <span className="text-sm font-medium">{user?.name ?? 'Unknown User'}</span>
-          </div>
+  <Avatar className="h-8 w-8">
+    <AvatarFallback>
+      {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+    </AvatarFallback>
+  </Avatar>
+  <span className="text-sm font-medium">{user?.name ?? 'Unknown User'}</span>
+</div>
           <Button size="icon" variant="ghost" onClick={handleLogout}>
             <LogOut className="h-5 w-5 text-gray-500" />
           </Button>
