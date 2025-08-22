@@ -11,10 +11,25 @@ import UserProfile from '@/components/UserProfile';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
+import React from 'react';
+
+// ✅ Define a User type (matches your API response)
+type User = {
+  name: string;
+  email: string;
+};
+
+// ✅ Props type for SideNavItem
+type SideNavItemProps = {
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
+  active: boolean;
+};
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null);
-  const [activeTab, setActiveTab] = useState('community');
+  const [user, setUser] = useState<User | null>(null);
+  const [activeTab, setActiveTab] = useState<string>('community');
   const router = useRouter();
 
   useEffect(() => {
@@ -25,7 +40,7 @@ export default function Dashboard() {
     try {
       const response = await fetch('/api/auth/me');
       if (response.ok) {
-        const userData = await response.json();
+        const userData: User = await response.json();
         setUser(userData);
       } else {
         router.push('/login');
@@ -66,10 +81,30 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold text-gray-800">RootVenture</h2>
           </div>
           <nav className="mt-6 flex flex-col space-y-2 px-4">
-            <SideNavItem label="Community" icon={<Users className="h-4 w-4" />} onClick={() => setActiveTab('community')} active={activeTab === 'community'} />
-            <SideNavItem label="Submit Idea" icon={<Plus className="h-4 w-4" />} onClick={() => setActiveTab('submit')} active={activeTab === 'submit'} />
-            <SideNavItem label="Profile" icon={<User className="h-4 w-4" />} onClick={() => setActiveTab('profile')} active={activeTab === 'profile'} />
-            <SideNavItem label="Settings" icon={<Settings className="h-4 w-4" />} onClick={() => setActiveTab('settings')} active={activeTab === 'settings'} />
+            <SideNavItem
+              label="Community"
+              icon={<Users className="h-4 w-4" />}
+              onClick={() => setActiveTab('community')}
+              active={activeTab === 'community'}
+            />
+            <SideNavItem
+              label="Submit Idea"
+              icon={<Plus className="h-4 w-4" />}
+              onClick={() => setActiveTab('submit')}
+              active={activeTab === 'submit'}
+            />
+            <SideNavItem
+              label="Profile"
+              icon={<User className="h-4 w-4" />}
+              onClick={() => setActiveTab('profile')}
+              active={activeTab === 'profile'}
+            />
+            <SideNavItem
+              label="Settings"
+              icon={<Settings className="h-4 w-4" />}
+              onClick={() => setActiveTab('settings')}
+              active={activeTab === 'settings'}
+            />
           </nav>
         </div>
 
@@ -77,7 +112,9 @@ export default function Dashboard() {
         <div className="border-t p-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Avatar className="h-8 w-8">
-              <AvatarFallback>{user.name?.charAt(0)?.toUpperCase() || 'U'}</AvatarFallback>
+              <AvatarFallback>
+                {user.name?.charAt(0)?.toUpperCase() || 'U'}
+              </AvatarFallback>
             </Avatar>
             <span className="text-sm font-medium">{user.name}</span>
           </div>
@@ -89,7 +126,9 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
-        <h1 className="text-2xl font-bold mb-4 text-gray-800">Welcome back, {user.name}!</h1>
+        <h1 className="text-2xl font-bold mb-4 text-gray-800">
+          Welcome back, {user.name}!
+        </h1>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsContent value="community">
             <CommunityFeed user={user} />
@@ -109,12 +148,15 @@ export default function Dashboard() {
   );
 }
 
-function SideNavItem({ label, icon, onClick, active }) {
+// ✅ Strongly typed SideNavItem
+function SideNavItem({ label, icon, onClick, active }: SideNavItemProps) {
   return (
     <button
       onClick={onClick}
       className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium ${
-        active ? 'bg-blue-100 text-blue-600' : 'text-gray-700 hover:bg-gray-100'
+        active
+          ? 'bg-blue-100 text-blue-600'
+          : 'text-gray-700 hover:bg-gray-100'
       }`}
     >
       {icon}
