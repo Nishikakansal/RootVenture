@@ -113,10 +113,10 @@ export default function Dashboard() {
           <div className="flex items-center space-x-2">
             <Avatar className="h-8 w-8">
               <AvatarFallback>
-                {user.name?.charAt(0)?.toUpperCase() || 'U'}
+                {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
               </AvatarFallback>
             </Avatar>
-            <span className="text-sm font-medium">{user.name}</span>
+            <span className="text-sm font-medium">{user?.name ?? 'Unknown User'}</span>
           </div>
           <Button size="icon" variant="ghost" onClick={handleLogout}>
             <LogOut className="h-5 w-5 text-gray-500" />
@@ -127,7 +127,7 @@ export default function Dashboard() {
       {/* Main Content */}
       <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
         <h1 className="text-2xl font-bold mb-4 text-gray-800">
-          Welcome back, {user.name}!
+          Welcome back, {user?.name ?? 'User'}!
         </h1>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsContent value="community">
