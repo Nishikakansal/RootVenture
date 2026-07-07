@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌱 RootVenture
 
-## Getting Started
+RootVenture is a full-stack Next.js web application where startup dreams take root. It is a community-driven platform designed for aspiring entrepreneurs to showcase their concepts, receive valuable feedback, discover innovative global ideas, and collaborate with potential co-founders and mentors.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Key Features
+
+*   **Share Your Vision:** Post your startup concepts with tags, categories, and descriptive details.
+*   **Discover Unique Ideas:** Browse and search a global feed of innovative startup ideas from around the world.
+*   **Engage & Upvote:** Support interesting ideas through upvotes and keep track of trending concepts.
+*   **Save for Later:** Bookmark ideas you want to revisit.
+*   **User Profiles:** Build an entrepreneur profile showcasing your contributions, shared ideas, and saved posts.
+*   **Fully Responsive UI:** Optimized for all screen sizes, featuring a fluid mobile bottom navigation system.
+
+---
+
+## 🛠️ Tech Stack
+
+*   **Frontend:** React (Next.js App Router), Tailwind CSS (for modern UI styling), Radix UI (accessible primitives).
+*   **Backend:** Next.js Server-Side Route Handlers.
+*   **Database:** MongoDB with Mongoose (ODM).
+*   **Authentication:** Custom JWT-based authentication (NextAuth-ready).
+*   **Utilities:** `date-fns` (date formatting), `lucide-react` (icon set).
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com) installed.
+
+### Installation
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/Nishikakansal/RootVenture.git
+    cd RootVenture
+    ```
+
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Environment Variables:**
+    Create a `.env.local` file in the root directory and configure your MongoDB URI and authentication secrets:
+    ```env
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret_key
+    NEXTAUTH_SECRET=your_nextauth_secret
+    ```
+
+4.  **Run the Development Server:**
+    ```bash
+    npm run dev
+    ```
+
+    Open [http://localhost:3001](http://localhost:3001) in your browser to view the application.
+
+---
+
+## 📁 Directory Structure
+
+```
+rootventure/
+├── app/                  # Next.js pages, API routes, and layouts
+│   ├── api/              # Backend endpoint route handlers (auth, ideas)
+│   ├── dashboard/        # Dashboard view (Community, Profile, etc.)
+│   ├── login/            # Auth pages
+│   ├── signup/           # Signup pages
+│   └── page.js           # Public landing page
+├── components/           # Reusable React components (Navbar, Main, Feed)
+├── lib/                  # Helper utilities (db connection, auth config)
+├── models/               # MongoDB schema models (User, Idea)
+└── public/               # Static assets (images, gifs)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
