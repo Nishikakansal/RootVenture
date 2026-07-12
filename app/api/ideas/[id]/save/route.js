@@ -3,12 +3,12 @@ import { cookies } from 'next/headers';
 import { verifyToken } from '@/lib/auth';
 import connectDB from '@/lib/mongoose';
 import User from '@/models/User';
-import Idea from '@/models/Idea';
+import Idea from '@/models/idea';
 
 export async function POST(request, { params }) {
   try {
     await connectDB();
-    
+
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
 
@@ -59,7 +59,7 @@ export async function POST(request, { params }) {
 
     await user.save();
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       message: hasSaved ? 'Idea removed from saved' : 'Idea saved successfully',
       saved: !hasSaved
     });
