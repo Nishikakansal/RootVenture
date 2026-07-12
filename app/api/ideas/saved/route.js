@@ -3,12 +3,12 @@ import { cookies } from 'next/headers';
 import { verifyToken } from '@/lib/auth';
 import connectDB from '@/lib/mongoose';
 import User from '@/models/User';
-import Idea from '@/models/Idea';
+import Idea from '@/models/idea';
 
 export async function GET() {
   try {
     await connectDB();
-    
+
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
 
