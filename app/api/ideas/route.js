@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { verifyToken } from '@/lib/auth';
 import connectDB from '@/lib/mongoose';
-import Idea from '@/models/Idea';
+import Idea from '@/models/idea';
 import User from '@/models/User';
 
 export async function GET() {
@@ -36,7 +36,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     await connectDB();
-    
+
     const cookieStore = cookies();
     const token = cookieStore.get('token')?.value;
 
@@ -78,7 +78,7 @@ export async function POST(request) {
     );
   } catch (error) {
     console.error('Create idea error:', error);
-    
+
     if (error.name === 'ValidationError') {
       const messages = Object.values(error.errors).map(err => err.message);
       return NextResponse.json(
